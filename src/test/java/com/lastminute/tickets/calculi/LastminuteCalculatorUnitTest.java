@@ -2,11 +2,10 @@ package com.lastminute.tickets.calculi;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
+import com.lastminute.db.DatabaseException;
 import com.lastminute.db.FlightsDatabase;
+import com.lastminute.db.FlightsFileDatabase;
 import com.lastminute.flights.Flight;
 import com.lastminute.flights.Trip;
 import com.lastminute.printers.Printer;
@@ -33,15 +32,13 @@ public class LastminuteCalculatorUnitTest {
     private static final int ADULTS = 1;
     
     
-    @Mock
     private FlightsDatabase db;
     
-    @InjectMocks
     private LastminuteCalculator calculator;
     
     @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
+    public void setUp() throws DatabaseException {
+        calculator = new LastminuteCalculator(new FlightsFileDatabase());
     }
     
     @Test
