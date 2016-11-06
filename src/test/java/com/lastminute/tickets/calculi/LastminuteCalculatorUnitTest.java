@@ -38,7 +38,8 @@ public class LastminuteCalculatorUnitTest {
     
     @Before
     public void setUp() throws DatabaseException {
-        calculator = new LastminuteCalculator(new FlightsFileDatabase());
+        db = spy(new FlightsFileDatabase());
+        calculator = new LastminuteCalculator(db);
     }
     
     @Test
